@@ -1,0 +1,53 @@
+<?page title="Portfolio"?>
+<?init class="fr.cedricmoulard.photostore.web.ui.WorkbenchInit" ?>
+
+<window title="You are using ZK: ${desktop.webApp.version}"
+	border="normal" width="100%" height="900px">
+
+	<borderlayout>
+
+		<center title="Galerie" border="0">
+			
+ 			<div apply="org.zkoss.bind.BindComposer"
+				viewModel="@id('vm') @init('fr.cedricmoulard.photostore.web.ui.ctrl.GalleryViewModel')"
+				form="@id('fx') @load(vm.shoppingCart)">
+
+				<grid>
+			        <rows>
+			            <row>
+			                <label value="@load(fx.size)" />
+			            </row>
+		            </rows>
+	            </grid>
+	            
+				<listbox id="photosListbox"
+					model="@load(vm.photos)"
+					selectedItem="@bind(vm.selectedItem)" rows="3">
+					<listhead sizable="true">
+						<listheader label="Photo" />
+						<listheader label="Name" />
+						<listheader label="Available" />
+						<listheader label="Path" />
+						<listheader label="Index"/>
+						<listheader />
+					</listhead>
+					<template name="model" var="photo">
+						<listitem draggable="true" droppable="true" onDrop="@command('move',event=event)">
+							<listcell>
+								<image height="70px" width="70px" src="@load(photo.imgPath)" />
+							</listcell>
+							<listcell label="@load(photo.name)" />
+							<listcell label="@load(photo.available)" />
+							<listcell label="@load(photo.imgPath)"  />
+							<listcell label="@load(photo.index)"  />
+							<listcell>
+								<button label="Ajouter au panier" onClick="@command('addCart',photo=photo)" />
+							</listcell>	
+						</listitem>
+					</template>
+				</listbox>
+			</div>
+		</center>
+	</borderlayout>
+
+</window>
