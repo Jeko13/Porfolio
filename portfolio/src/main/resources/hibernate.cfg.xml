@@ -23,5 +23,6 @@
     <mapping class="fr.cedricmoulard.photostore.model.bean.User"/>
     <mapping class="fr.cedricmoulard.photostore.model.bean.Product"/>
     <mapping class="fr.cedricmoulard.photostore.model.bean.Photo"/>
+    <mapping class="fr.cedricmoulard.photostore.model.bean.Gallery"/>
   </session-factory>
 </hibernate-configuration>
